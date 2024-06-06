@@ -1,6 +1,6 @@
 import { createRef, useRef } from "react";
 import { addPlugin, Flipper } from "react-native-flipper";
-import { ReducerAction } from "./core/types";
+import { ReducerAction } from "../core/types";
 
 export class ContextApiEventManager {
 	private connectionRef: Flipper.FlipperConnection | null;

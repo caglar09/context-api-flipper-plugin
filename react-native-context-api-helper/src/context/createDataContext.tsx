@@ -13,8 +13,8 @@ import {
 	GetterProperty,
 	ReducerAction,
 	ReducerActionType,
-} from "./core/types";
-import { ContextApiEventManager, getContextApiWatcher } from "./flipper-plugin";
+} from "../core/types";
+import { ContextApiEventManager, getContextApiWatcher } from "../flipper";
 
 // Define the type for the initial state
 export interface InitialStateType {
@@ -50,7 +50,8 @@ export interface IContext<TState> {
 let contextCount: number = 0;
 
 function createCustomDataContext<State extends InitialStateType>(
-	context: IContext<State>
+	context: IContext<State>,
+	callback?: (_actions: State["actions"]) => void
 ) {
 	type CurrentContextType = typeof context;
 
@@ -63,8 +64,6 @@ function createCustomDataContext<State extends InitialStateType>(
 
 	type ContextType = { state: StateType; name?: string } & ContextActions;
 	const contextInitialState = { state: context.initialState } as ContextType;
-
-	const keys = Object.keys({} as ContextType);
 
 	// Create the context
 	const Context = createContext<ContextType>(contextInitialState);
@@ -108,28 +107,12 @@ function createCustomDataContext<State extends InitialStateType>(
 			}
 		);
 
-		useEffect(() => {
-			let _contextHelper = null;
-			if (context.devSettings?.flipperDebug) {
-				let cName = Context.displayName ?? name ?? "";
-				_contextHelper = getContextApiWatcher().registerContext(cName, state);
-			}
-			contextHelper.current = _contextHelper;
-			return () => {
-				_contextHelper?.unregister?.();
-			};
-		}, []);
-		useEffect(() => {
-			if (context.devSettings?.flipperDebug) {
-				contextHelper.current?.setState?.(state);
-			}
-		}, [state]);
 		const customDispatcher: typeof dispatch = (action: ReducerAction) => {
 			dispatch(action);
 
 			if (context.devSettings?.flipperDebug) {
 				console.log(action);
-				contextHelper.current.sendEvent("dispatch", action);
+				contextHelper.current.sendEvent(action);
 			}
 		};
 
@@ -155,6 +138,23 @@ function createCustomDataContext<State extends InitialStateType>(
 			name: Context.displayName,
 			...contextActions,
 		};
+
+		useEffect(() => {
+			let _contextHelper = null;
+			if (context.devSettings?.flipperDebug) {
+				let cName = Context.displayName ?? name ?? "";
+				_contextHelper = getContextApiWatcher().registerContext(cName, state);
+			}
+			contextHelper.current = _contextHelper;
+			return () => {
+				_contextHelper?.unregister?.();
+			};
+		}, []);
+		useEffect(() => {
+			if (context.devSettings?.flipperDebug) {
+				contextHelper.current?.setState?.(state);
+			}
+		}, [state]);
 
 		return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 	};
