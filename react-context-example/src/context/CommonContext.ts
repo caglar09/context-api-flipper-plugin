@@ -1,5 +1,5 @@
-import { createCustomDataContextV2 } from "react-context-api-helper/src/context/createDataContextV2";
-import { ReducerAction } from "react-context-api-helper/src/core";
+import * as ContextHelper from "react-context-api-helper";
+import { ReducerAction } from "react-context-api-helper/dist/core";
 const initialState = {
 	initialized: false,
 };
@@ -10,13 +10,13 @@ const reducer = (state: typeof initialState, action: ReducerAction) =>
 			...state,
 			initialized: action.payload,
 		},
-	})[action.type];
+	}[action.type]);
 
 export const {
 	Context: CommonContext,
 	Provider: CommonContextProvider,
 	useContext: useCommonContext,
-} = createCustomDataContextV2(
+} = ContextHelper.createCustomDataContextV2(
 	{
 		initialState,
 		reducer,

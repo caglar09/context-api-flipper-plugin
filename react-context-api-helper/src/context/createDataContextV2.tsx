@@ -56,7 +56,7 @@ function createCustomDataContextV2<
 	Context extends IContext<any> = IContext<any>,
 >(
 	context: Context,
-	handleEventHandler?: (name: string) => {
+	handleEventHandler: (name: string) => {
 		onUnRegister?: (name?: string) => void;
 		onEvent?: (name: ContextEventHandlerTypes, data?: any) => void;
 	}
@@ -113,8 +113,8 @@ function createCustomDataContextV2<
 					JSON.stringify(action.payload)
 				);
 			}
-			eventHandler?.current.onEvent?.("dispatch", action);
-			eventHandler?.current.onEvent?.("setState", preparedState);
+			eventHandler.current?.onEvent?.("dispatch", action);
+			eventHandler.current?.onEvent?.("setState", preparedState);
 
 			return preparedState as StateType;
 		};
@@ -132,7 +132,7 @@ function createCustomDataContextV2<
 			}
 			let _initialState = { ...st, ..._value };
 
-			eventHandler?.current.onEvent?.("initialState", _initialState);
+			eventHandler.current?.onEvent?.("initialState", _initialState);
 
 			return _initialState;
 		});
@@ -154,7 +154,7 @@ function createCustomDataContextV2<
 
 		useEffect(() => {
 			return () => {
-				eventHandler?.current.onUnRegister?.(Context.displayName);
+				eventHandler.current?.onUnRegister?.(Context.displayName);
 			};
 		}, []);
 

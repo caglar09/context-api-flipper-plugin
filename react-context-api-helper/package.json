@@ -1,23 +1,41 @@
 {
 	"name": "react-context-api-helper",
-	"version": "0.0.4",
+	"version": "0.0.7",
 	"description": "",
-	"main": "index.js",
+	"main": "dist/index.cjs",
 	"type": "module",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.cjs"
+		}
+	},
 	"scripts": {
+		"clean": "rimraf ./dist && rimraf ./react-context-api-helper*.tgz",
+		"run-build": "tsup src",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"prepack": "tsc --build"
+		"prepack": "yarn clean && yarn tsc && yarn run-build",
+		"prepare-version": "yarn prepack & yarn pack"
 	},
 	"author": "Çağlar YILDIRIM",
 	"license": "ISC",
 	"dependencies": {},
 	"devDependencies": {
+		"@babel/compat-data": "7.19.4",
+		"@babel/core": "7.19.6",
+		"@babel/generator": "7.19.6",
+		"@babel/helper-compilation-targets": "7.19.3",
+		"@babel/helper-create-class-features-plugin": "7.19.0",
+		"@babel/helper-module-transforms": "7.19.6",
 		"@types/node": "^20.14.2",
 		"@types/react": "latest",
 		"eslint": "^8.19.0",
 		"prettier": "^3.2.5",
 		"react": "latest",
 		"react-dom": "latest",
+		"rimraf": "^5.0.7",
+		"tsup": "^8.1.0",
 		"typescript": "4.8.4"
 	},
 	"peerDependencies": {
