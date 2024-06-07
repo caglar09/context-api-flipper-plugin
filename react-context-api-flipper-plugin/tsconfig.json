@@ -1,0 +1,13 @@
+
+{
+    "compilerOptions": {
+        
+        "noFallthroughCasesInSwitch": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "isolatedModules": false,
+    },
+    "include": ["plugin/**/*"],
+}

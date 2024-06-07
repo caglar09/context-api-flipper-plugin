@@ -1,0 +1,13 @@
+
+{
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "noFallthroughCasesInSwitch": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "isolatedModules": false,
+    },
+    "include": ["../**/*"],
+}

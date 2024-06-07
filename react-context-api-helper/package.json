@@ -1,0 +1,27 @@
+{
+	"name": "react-context-api-helper",
+	"version": "0.0.4",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepack": "tsc --build"
+	},
+	"author": "Çağlar YILDIRIM",
+	"license": "ISC",
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "^20.14.2",
+		"@types/react": "latest",
+		"eslint": "^8.19.0",
+		"prettier": "^3.2.5",
+		"react": "latest",
+		"react-dom": "latest",
+		"typescript": "4.8.4"
+	},
+	"peerDependencies": {
+		"@types/react": "*",
+		"react": "*"
+	}
+}
