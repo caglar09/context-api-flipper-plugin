@@ -1,8 +1,9 @@
 import {
-	createCustomDataContextV2,
 	ReducerAction,
+	createCustomDataContextV2,
 } from "react-context-api-helper";
-import { getFlipperContextApiHelper } from "react-context-api-flipper-plugin";
+
+import { ContextApiEventManager } from "react-context-api-flipper-plugin";
 
 const initialState = {
 	initialized: false,
@@ -48,20 +49,17 @@ export const {
 			},
 		}),
 	},
-	(name) => {
-		const eventHandler = getFlipperContextApiHelper()?.registerContext(
-			name,
-			initialState
-		);
-		console.log("event", eventHandler);
+	() => {
+		const eventHandler = new ContextApiEventManager();
 		return {
+			onRegister: (name) => {
+				eventHandler?.register(name);
+			},
 			onEvent: (name, data) => {
-				console.log("event", data, eventHandler);
-
 				eventHandler?.sendEvent?.(name, data);
 			},
 			onUnRegister: () => {
-				console.log("Unregistering");
+				eventHandler?.unregister?.();
 			},
 		};
 	}

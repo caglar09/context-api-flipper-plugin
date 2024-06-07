@@ -1,6 +1,6 @@
 {
   "name": "react-context-api-helper",
-  "version": "0.0.1-6",
+  "version": "0.0.1-8",
   "description": "Template and quick-starter to create modern React libraries using Rollup.",
   "main": "dist/cjs/bundle.js",
   "module": "dist/esm/bundle.js",

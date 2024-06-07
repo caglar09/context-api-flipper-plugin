@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-type-constraint */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Reducer } from "react";
 
 // Define a type to get the return type of a function

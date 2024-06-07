@@ -7897,13 +7897,13 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-context-api-flipper-plugin@../react-context-api-flipper-plugin/react-context-api-flipper-plugin-v0.0.1-4.tgz:
-  version "0.0.1-4"
-  resolved "../react-context-api-flipper-plugin/react-context-api-flipper-plugin-v0.0.1-4.tgz#c3f83a287217d0775a4d9614244c2a34117b1060"
+react-context-api-flipper-plugin@../react-context-api-flipper-plugin/react-context-api-flipper-plugin-v0.0.1-8.tgz:
+  version "0.0.1-8"
+  resolved "../react-context-api-flipper-plugin/react-context-api-flipper-plugin-v0.0.1-8.tgz#21c47552448498b774d49db0c8edb98139491248"
 
-react-context-api-helper@../react-context-api-helper/react-context-api-helper-v0.0.1-6.tgz:
-  version "0.0.1-6"
-  resolved "../react-context-api-helper/react-context-api-helper-v0.0.1-6.tgz#aa3b5ebbe8895a3f0eba7030bd53bb22554a3db9"
+react-context-api-helper@../react-context-api-helper/react-context-api-helper-v0.0.1-8.tgz:
+  version "0.0.1-8"
+  resolved "../react-context-api-helper/react-context-api-helper-v0.0.1-8.tgz#619ff098a999df84456f1539e6e0abae65cee142"
 
 react-dev-utils@^12.0.1:
   version "12.0.1"

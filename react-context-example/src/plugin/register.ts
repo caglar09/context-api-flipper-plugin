@@ -2,7 +2,16 @@ import { createRef } from "react";
 import { ContextApiEventManager } from "./flipper-plugin";
 import { FlipperConnection } from "./type";
 
+let contextApiWatcherInstance: ContextApiEventManager | null = null;
 export let flipperConnectionRef = createRef<FlipperConnection>();
+export const getFlipperContextApiHelper = () => {
+	if (contextApiWatcherInstance) {
+		console.log("FLIPPER-CONTEXT-API-HANDLER", contextApiWatcherInstance);
+
+		return contextApiWatcherInstance;
+	}
+	return null; // Or a dummy object
+};
 
 export const registerFlipperContextApiHelper = async (
 	renderRoot?: Function
@@ -39,7 +48,7 @@ export const registerFlipperContextApiHelper = async (
 			console.log("FLIPPER-REGISTERED");
 			setTimeout(() => {
 				renderRoot?.();
-			}, 2000);
+			}, 5000);
 		});
 	} catch (error) {
 		console.error("Failed to register:", error);

@@ -64,7 +64,6 @@ function createCustomDataContextV2<
 	} = () => ({})
 ) {
 	const uniqueContextName = ContextHelper.generateContextName();
-	const eventHandler = getEventHandler ? getEventHandler() : null;
 
 	type CurrentContextType = typeof context;
 
@@ -82,6 +81,7 @@ function createCustomDataContextV2<
 
 	// Create the context
 	const MyContext = createContext<ContextType>(contextInitialState);
+	const eventHandler = getEventHandler ? getEventHandler() : null;
 
 	/**
 	 * The provider component that wraps the children components with the context.
@@ -103,6 +103,7 @@ function createCustomDataContextV2<
 			| { [key in keyof StateType]?: GetReturnType<StateType[key]> };
 	}) => {
 		MyContext.displayName = name ?? uniqueContextName;
+console.log(eventHandler);
 
 		const reducerMiddleware = (state: StateType, action: ReducerAction) => {
 			const preparedState = context.reducer(state, action);
