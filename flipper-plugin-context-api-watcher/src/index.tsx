@@ -65,6 +65,8 @@ export function plugin(client: PluginClient<Events, {}>) {
 
 	client.onMessage("contextEvent", (contextData) => {
 		data.update((draft) => {
+			console.log("contextEvent", contextData);
+
 			draft.contexts[contextData.name].history.push(contextData);
 		});
 	});
