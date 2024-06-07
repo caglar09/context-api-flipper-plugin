@@ -75,27 +75,3 @@ export class FlipperContextApiHelper {
 		this.registeredContexts = {};
 	};
 }
-
-let contextApiWatcherInstance: FlipperContextApiHelper | null = null;
-
-export const getFlipperContextApiHelper = () => {
-	// if (!contextApiWatcherInstance) {
-	// 	throw new Error(
-	// 		"Context API Watcher is not connected or not registered. Please call registerFlipperContextApiHelper() first."
-	// 	);
-	// }
-	return contextApiWatcherInstance;
-};
-
-export const registerFlipperContextApiHelper = () => {
-	addPlugin({
-		getId: () => "context-api-watcher",
-		onConnect: (connection) => {
-			contextApiWatcherInstance = new FlipperContextApiHelper(connection);
-		},
-		onDisconnect: () => {
-			contextApiWatcherInstance?.disconnect();
-			contextApiWatcherInstance = null;
-		},
-	});
-};

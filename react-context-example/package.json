@@ -11,7 +11,8 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "react": "^18.3.1",
-    "react-context-api-helper": "../react-context-api-helper/react-context-api-helper-v0.0.7.tgz",
+    "react-context-api-flipper-plugin": "../react-context-api-flipper-plugin/react-context-api-flipper-plugin-v0.0.1-4.tgz",
+    "react-context-api-helper": "../react-context-api-helper/react-context-api-helper-v0.0.1-6.tgz",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
@@ -21,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "ins": "yarn remove react-context-api-helper && yarn add ../react-context-api-helper/react-context-api-helper-v0.0.7.tgz",
+    "ins": "yarn remove react-context-api-helper && yarn cache clean react-context-api-helper && yarn add ../react-context-api-helper/react-context-api-helper-v0*.tgz",
+    "ins2": "yarn remove react-context-api-flipper-plugin && yarn cache clean react-context-api-flipper-plugin && yarn add ../react-context-api-flipper-plugin/react-context-api-flipper-plugin-v*.tgz",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "js-flipper": "^0.212.0"
   }
 }

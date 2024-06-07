@@ -2,6 +2,7 @@ import React, {
 	Context,
 	createContext,
 	Dispatch,
+	memo,
 	useEffect,
 	useMemo,
 	useReducer,
@@ -53,14 +54,16 @@ export interface IContext<TState extends Record<string, any>> {
 type ContextEventHandlerTypes = "setState" | "initialState" | "dispatch";
 
 function createCustomDataContextV2<
-	Context extends IContext<any> = IContext<any>,
+	Context extends IContext<any> = IContext<any>
 >(
 	context: Context,
-	handleEventHandler: (name: string) => {
+	getEventHandler: (name: string) => {
 		onUnRegister?: (name?: string) => void;
 		onEvent?: (name: ContextEventHandlerTypes, data?: any) => void;
-	}
+	} = () => ({})
 ) {
+	const uniqueContextName = ContextHelper.generateContextName();
+
 	type CurrentContextType = typeof context;
 
 	type ContextActionTypes = ReturnType<CurrentContextType["actions"]>;
@@ -84,7 +87,7 @@ function createCustomDataContextV2<
 	 * @param name The display name of the context.
 	 * @returns The provider component.
 	 */
-	const Provider = ({
+	const ProviderComp = ({
 		children,
 		name,
 		value,
@@ -97,11 +100,12 @@ function createCustomDataContextV2<
 			  })
 			| { [key in keyof StateType]?: GetReturnType<StateType[key]> };
 	}) => {
-		Context.displayName = name ?? ContextHelper.generateContextName();
+		Context.displayName = name ?? uniqueContextName;
 
-		const eventHandler = useRef<ReturnType<typeof handleEventHandler> | null>(
-			handleEventHandler ? handleEventHandler(Context.displayName) : null
+		const eventHandler = useRef<ReturnType<typeof getEventHandler>>(
+			getEventHandler ? getEventHandler(Context.displayName) : null
 		);
+		console.log("rendered");
 
 		const reducerMiddleware = (state: StateType, action: ReducerAction) => {
 			const preparedState = context.reducer(state, action);
@@ -141,10 +145,14 @@ function createCustomDataContextV2<
 			dispatch(action);
 		};
 
-		const contextActions = context.actions(customDispatcher, {
-			getState: () => state as StateType,
-			getIntialState: () => context.initialState,
-		});
+		const contextActions = useMemo(
+			() =>
+				context.actions(customDispatcher, {
+					getState: () => state,
+					getIntialState: () => context.initialState,
+				}),
+			[customDispatcher, state]
+		);
 
 		const contextValue: ContextType = {
 			state,
@@ -169,6 +177,8 @@ function createCustomDataContextV2<
 		}
 		return context;
 	};
+
+	const Provider = memo(ProviderComp);
 
 	return { Context, Provider, useContext };
 }

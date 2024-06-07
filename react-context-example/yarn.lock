@@ -6240,6 +6240,11 @@ jiti@^1.21.0:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.3.tgz#b2adb07489d7629b344d59082bbedb8c21c5f755"
   integrity sha512-uy2bNX5zQ+tESe+TiC7ilGRz8AtRGmnJH55NC5S0nSUjvvvM2hJHmefHErugGXN4pNv4Qx7vLsnNw9qJ9mtIsw==
 
+js-flipper@^0.212.0:
+  version "0.212.0"
+  resolved "https://registry.yarnpkg.com/js-flipper/-/js-flipper-0.212.0.tgz#94db094c68d9e9354bf051ee2ceb358f9110f5e5"
+  integrity sha512-9K+bVxk1IG3SMyNrC9PKftu12UwapmiARIS0norGuhYDmXPcHGaIhjnSbF1tfricCVLquLrcEwS4qHBxcPHwQQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -7892,9 +7897,13 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-context-api-helper@../react-context-api-helper/react-context-api-helper-v0.0.7.tgz:
-  version "0.0.7"
-  resolved "../react-context-api-helper/react-context-api-helper-v0.0.7.tgz#20770877f44ec22c7b1d0463471e156e538057f7"
+react-context-api-flipper-plugin@../react-context-api-flipper-plugin/react-context-api-flipper-plugin-v0.0.1-4.tgz:
+  version "0.0.1-4"
+  resolved "../react-context-api-flipper-plugin/react-context-api-flipper-plugin-v0.0.1-4.tgz#c3f83a287217d0775a4d9614244c2a34117b1060"
+
+react-context-api-helper@../react-context-api-helper/react-context-api-helper-v0.0.1-6.tgz:
+  version "0.0.1-6"
+  resolved "../react-context-api-helper/react-context-api-helper-v0.0.1-6.tgz#aa3b5ebbe8895a3f0eba7030bd53bb22554a3db9"
 
 react-dev-utils@^12.0.1:
   version "12.0.1"
